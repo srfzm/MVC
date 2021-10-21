@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import MVC.prueba;
+
 public class Conexion {
     
 	static String bd = "curso";
@@ -33,9 +35,11 @@ public class Conexion {
                 conexion.setAutoCommit(false);
 	        
 	    } catch (SQLException e) {
+	    	prueba.logger.warn("Error al conectar con la base.",e);
 	    	return false;
 	    }
 	    catch (Exception e) {
+	    	prueba.logger.warn("Error al conectar con la base.",e);
 	    	return false;
 	    }
 	    return true;
@@ -48,6 +52,7 @@ public class Conexion {
             System.out.println("La conexion a la  base de datos " + bd + " ha terminado");
     	
     	} catch (SQLException e) {
+    		prueba.logger.warn("Error al desconectar.",e);
     		System.out.println("Error al cerrar la conexion");
         }
     }

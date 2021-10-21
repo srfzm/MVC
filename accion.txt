@@ -1,8 +1,0 @@
-Se ha obtenido el listado de clientes
-Se ha obtenido el listado de clientes
-Se ha obtenido el listado de clientes
-Se ha realizado una busqueda en cliente
-Se ha devuelto el ultimo.
-Se ha obtenido el listado de clientes
-Se ha realizado una busqueda en cliente
-Se ha devuelto el ultimo.

@@ -29,6 +29,8 @@ public class Modelo {
 	
 	public boolean insertar() throws SQLException
 	{
+		prueba.logger.info("Intento de inserccion de Nombre "+nombre+" telefono "+telefono+".");
+		
 		Connection conexion = Conexion.getConexion();
 		if(conexion==null)
 		{
@@ -47,12 +49,14 @@ public class Modelo {
 
 			if (resultado == 0) {
 				System.out.println("NO se ha podido insertar");
-				Ficheros.accion("NO se ha podido insertar");
+				prueba.logger.info("No se ha podido realizar la inserccion");
+				//Ficheros.accion("NO se ha podido insertar");
 			}
 			else
 			{
 				System.out.println("Inserccion correcta");
-				Ficheros.accion("Inserccion correcta");
+				prueba.logger.info("Inserccion correcta");
+				//Ficheros.accion("Inserccion correcta");
 			}
 			conexion.commit();
 
@@ -81,6 +85,8 @@ public class Modelo {
 	
 	public Modelo devolverUlt() throws SQLException
 	{
+		prueba.logger.info("Se ha accedido a devolver el ultimo registro de la tabla.");
+		
 		Connection conexion = Conexion.getConexion();
 		if(conexion==null)
 		{
@@ -104,7 +110,10 @@ public class Modelo {
 
 			Modelo dev = new Modelo(resultado.getString("nombre"),resultado.getString("telefono"));
 			if(dev!=null)
-				Ficheros.accion("Se ha devuelto el ultimo.");
+			{
+				//Ficheros.accion("Se ha devuelto el ultimo.");
+				prueba.logger.info("Se ha devuelto Nombre "+nombre+" telefono "+telefono+".");
+			}
 
 			ps.close();
 			
@@ -222,7 +231,8 @@ public class Modelo {
 		
 		Conexion.desconectar();
 		
-		Ficheros.accion("Se ha obtenido el listado de clientes");
+		//Ficheros.accion("Se ha obtenido el listado de clientes");
+		prueba.logger.info("Obtenido listado de clientes..");
 		
 		return map;
 	}

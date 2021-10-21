@@ -10,6 +10,8 @@ public class Controlador {
 	
 	public static void principal() throws SQLException
 	{
+		prueba.logger.info("Accedido al controlador principal");
+		
 		Modelo mod = Formulario.pedirDato();
 		if(mod.validad())
 		{
@@ -28,6 +30,8 @@ public class Controlador {
 	
 	public static void login() throws SQLException
 	{
+		prueba.logger.info("Accedido al controlador login.");
+		
 		Modelo mod = Formulario.pedirDato();
 		if(!mod.validad())
 				return;
@@ -35,24 +39,28 @@ public class Controlador {
 		if(Modelo.existe(mod))
 		{
 			Modelo.cargarCliente(mod);
-			Ficheros.log("Login correcto");
+			prueba.logger.info("Login correcto.");
+			//Ficheros.log("Login correcto");
 			Formulario.mostrarDatos(mod);
 		}
 		else
 		{
-			Ficheros.log("Login incorrecto");
+			//Ficheros.log("Login incorrecto");
+			prueba.logger.info("Login incorrecto");
 			System.out.println("El modelo no existe.");
 		}
 	}
 	
 	public static void listarClientes() throws SQLException
 	{
+		prueba.logger.info("Accedido al controlador de listar clientes");
 		HashMap<Integer, Modelo> map = Modelo.devolverClientes();
 		Formulario.mostrarLista(map);
 	}
 	
 	public static void pruebaAcc() throws SQLException
 	{
+		prueba.logger.info("Accedido al controlador de prueba");
 		Controlador.listarClientes();
 		Controlador.login();
 		new Modelo(null, null).devolverUlt();

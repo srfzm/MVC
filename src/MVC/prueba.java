@@ -1,16 +1,25 @@
 package MVC;
 
 import curso.bbdd.Conexion;
+
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
 
 public class prueba {
 
 	private Connection con;
 	private Statement stm;
 	private ResultSet res;
+	
+	public static Logger logger = LogManager.getLogger(prueba.class);
 	
 	prueba()
 	{
@@ -51,6 +60,13 @@ public class prueba {
 	
 	public static void main (String [ ] args) {
 		//prueba p= new prueba();
+		
+		ClassLoader loader = Thread.currentThread().getContextClassLoader();
+		URL url = loader.getResource("log4j.properties");
+		PropertyConfigurator.configure(url);
+		
+		logger.info("Iniciada aplicación.");
+		
 		try
 		{
 			//Controlador.principal();
@@ -61,7 +77,10 @@ public class prueba {
 		catch(SQLException e) {
 
             // TODO Auto-generated catch block
+			logger.warn("Error SQL.");
             e.printStackTrace();
 		}
+		
+		logger.info("Salida aplicación.");
 	}
 }
